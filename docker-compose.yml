@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - JAVA_OPTS=-XX:+UseSerialGC
+      - NEO4J_AUTH=neo4j/yourpassword
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - ./test-data.cypher:/docker-entrypoint-initdb.d/test-data.cypher
+    networks:
+      - dev-network
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env.dev
+    depends_on:
+      - neo4j
+    networks:
+      - dev-network
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "8080:8080"
+    environment:
+      - VUE_APP_TREE_API=http://localhost:3000
+    depends_on:
+      - backend
+    networks:
+      - dev-network
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+
+networks:
+  dev-network:
+    driver: bridge
