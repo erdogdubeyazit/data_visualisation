@@ -20,6 +20,7 @@ To set up and run the entire application in a development environment, you can u
    ```
 2. Start the services with Docker Compose:
     ```bash
+   docker-compose build --no-cache
    docker-compose up
    ```
 3. The application will be available on http://localhost:8080 for the frontend and http://localhost:3000 for the backend API.
