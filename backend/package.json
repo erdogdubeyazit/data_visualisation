@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "neo4j-driver": "^5.5.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "sinon": "^19.0.4",
+    "supertest": "^7.1.0"
+  }
+}
