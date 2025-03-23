@@ -3,6 +3,7 @@
 
 # backend discards
 backend/node_modules
+
 # frontend discards
 frontend/dist/
 frontend/node_modules
