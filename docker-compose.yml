@@ -46,7 +46,7 @@ services:
     ports:
       - "8080:8080"
     env_file:
-      - ./backend/.env.dev
+      - ./frontend/.env.dev
     depends_on:
       - backend
     networks:
