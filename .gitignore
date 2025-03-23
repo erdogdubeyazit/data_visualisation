@@ -1,8 +1,9 @@
 #MacOs Files
 .DS_Store
 
-
-#front-end discards
+# backend discards
+backend/node_modules
+# frontend discards
 frontend/dist/
 frontend/node_modules
 frontend/tests/e2e/reports/
