@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const graphController = require('./graph-controller')
+const graphController = require('./graph-controller');
+const {collectMetrics} = require('../common/metrics');
 
 /**
  * @swagger
@@ -66,6 +67,6 @@ const graphController = require('./graph-controller')
  *           example: Multiple root nodes exist in the tree
  *           description: Describes the error when multiple root nodes are found in the tree structure.
  */
-router.get('/nodes', graphController.getAllNodes);
+router.get('/nodes', collectMetrics(), graphController.getAllNodes);
 
 module.exports = router;

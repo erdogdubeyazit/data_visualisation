@@ -5,11 +5,12 @@ const swaggerSpec = require('./common/swagger');
 const graphRoutes = require('./graph/graph-routes');
 const {handleError} = require('./common/error-handler');
 const {port} = require('./common/config');
-const {metricsComponent, metricsEndpoint} = require('./common/metrics');
+const {register} = require('./common/metrics');
 
 const app = express();
 
 app.use(cors());
+app.disable('etag');
 
 // Home page
 app.use(express.json());
@@ -22,9 +23,13 @@ app.use('/api/v1', graphRoutes);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 app.use(handleError);
 
-// Metrics
-app.use(metricsComponent);
-app.get('/metrics', metricsEndpoint);
+// Metrics page
+app.use('/metrics', async (req, res) => {
+    res.setHeader('Content-Type', register.contentType);
+    const metrics = await register.metrics();
+    res.send(metrics);
+});
+
 
 if (require.main === module) {
     const server = app.listen(port, () => {

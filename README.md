@@ -102,12 +102,6 @@ The following metrics are collected and exposed by the application:
    - Labels: method, route, status
    - Buckets: [0.001, 0.01, 0.1, 0.3, 1.5, 5, 10]
 
-
-3. http_server_requests_seconds_sum:
-   - Description: Measures the total duration and maximum duration of HTTP requests.
-   - Type: Summary
-   - Labels: method, route, status
-
 ### Accessing Metrics
 The Prometheus metrics can be accessed at the following endpoint:
 
