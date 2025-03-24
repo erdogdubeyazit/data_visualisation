@@ -7,6 +7,7 @@ This project is a demo application for visualizing hierarchical data stored in a
 - **Backend:** Node.js + Express
 - **Frontend:** Vue.js
 - **Visualization:** D3.js
+- **Metrics:** Prometheus
 
 ## Setup Instructions
 
@@ -82,6 +83,39 @@ To create test data, use the test-data.cypher file. This file is also used by th
     npm run serve
     ```
 9. Environment variables are managed through .env files.
+
+## Metrics (Prometheus)
+The backend integrates with Prometheus to monitor the application's performance. The application collects various metrics related to incoming HTTP requests and exposes them for Prometheus.
+
+### Exposed Metrics
+The following metrics are collected and exposed by the application:
+
+1. http_server_requests_seconds_count:
+   - Description: Tracks the total number of HTTP requests.
+   - Type: Counter
+   - Labels: method, route, status
+
+
+2. http_server_requests_seconds:
+   - Description: Measures the duration of HTTP requests and exposes them in histogram format.
+   - Type: Histogram
+   - Labels: method, route, status
+   - Buckets: [0.001, 0.01, 0.1, 0.3, 1.5, 5, 10]
+
+
+3. http_server_requests_seconds_sum:
+   - Description: Measures the total duration and maximum duration of HTTP requests.
+   - Type: Summary
+   - Labels: method, route, status
+
+### Accessing Metrics
+The Prometheus metrics can be accessed at the following endpoint:
+
+- URL: `/metrics`
+- Method: `GET`
+
+Metrics will be returned in Prometheus format when this endpoint is accessed.
+
 
 ## Project Structure
 * `/backend`: Contains the backend application (Node.js + Express).
