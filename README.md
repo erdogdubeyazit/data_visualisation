@@ -29,7 +29,7 @@ To set up and run the entire application in a development environment, you can u
 ## Test Data
 To create test data, use the test-data.cypher file. This file is also used by the Docker Compose setup to initialize the database with sample data.
 
-## Frontend Setup
+## Backend Setup
 
 1. Install dependencies:
     ```bash
@@ -47,7 +47,7 @@ To create test data, use the test-data.cypher file. This file is also used by th
 
 5. Environment variables are managed through .env files.
 
-## Backend Setup
+## Frontend Setup
 
 1. Install dependencies:
     ```bash
